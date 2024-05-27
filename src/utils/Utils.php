@@ -23,11 +23,13 @@ class Utils{
                     if(in_array($controllerToTest.".php",$listOfFiles)){
                         return true;
                     }else{
+                        echo 'Controller not found in /controllers\n';
                         return false;
                     }
                     
 
                 }else{
+                    echo "/controllers is empty ; no controller found\n";
                     return false;
                 }
 
@@ -39,7 +41,7 @@ class Utils{
             return true;
 
         }else{
-            echo "controllers folder not found !\n";
+            echo "Controllers folder not found !\n";
             return false;
         }
     }
