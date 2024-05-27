@@ -15,7 +15,8 @@ use HomeBrewRouter\Utils;
 
 
 $route= new Routes();
-$route->addRoute("GET","/HanumanRouter/src/test",ControllerA::class,'getHello');
-$route->addRoute("GET","/HanumanRouter/src/prout",ControllerB::class,'getProut');
+//$route->addRoute("GET","/HanumanRouter/src/test",ControllerA::class,'getHello');
+//$route->addRoute("GET","/HanumanRouter/src/prout",ControllerB::class,'getProut');
 // $route->callMethode(parse_url($_SERVER["REQUEST_URI"],PHP_URL_PATH),"GET");
+
 

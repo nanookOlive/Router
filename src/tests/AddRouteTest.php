@@ -16,8 +16,12 @@ class AddRouteTest extends TestCase{
     }
     public static function routeProvider(){
         return [
-            ["GET","/HanumanRouter/src/test",ControllerA::class,"getHello",true],
-            ["POST","/HanumanRouter/src/create",ControllerA::class,"create",true],
+            "goodGET"=>["GET","/HanumanRouter/src/test",ControllerA::class,"getHello",true],
+            "goodPOST"=>["POST","/HanumanRouter/src/create",ControllerA::class,"create",true],
+            "wrongMethod"=>["MIAOU","/HanumanRouter/src/create",ControllerA::class,"create",false],
+            "wrongController"=>["GET","/HanumanRouter/src/test",ControllerC::class,"getHello",false],
+            "wrongFunction"=>["GET","/HanumanRouter/src/test",ControllerA::class,"get",false]
+
         ];
     }
 

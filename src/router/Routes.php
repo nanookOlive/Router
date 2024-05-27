@@ -31,7 +31,10 @@ class Routes{
         //pas d'erreur sur la méthode
         if(in_array($method,$this->methodList)){
             //on retire le namespace de 
-            if(Utils::controllerExists($controller)){
+
+            preg_match('/^([A-Za-z]*\\\\)*(.*)/',ControllerA::class,$matches);
+            $controllerClean=$matches[2];  
+            if(Utils::controllerExists($controllerClean)){
                 if(method_exists($controller,$methodOfController)){
 
                     $this->routes[$url]=[$method,$controller,$methodOfController];
