@@ -1,0 +1,4 @@
+DirectoryIndex src/index.php
+RewriteEngine  On
+RewriteCond %{REQUEST_FILENAME} !-f
+RewriteRule .* src/index.php [L]

@@ -1,0 +1,19 @@
+{
+    "name": "nanook/hanuman-router",
+    "description": "home brew router",
+    "type": "library",
+    "autoload": {
+        "psr-4": {
+            "Nanook\\HanumanRouter\\": "src/"
+        }
+    },
+    "authors": [
+        {
+            "name": "nanookOlive",
+            "email": "olivier.stierer@gmail.com"
+        }
+    ],
+    "require-dev": {
+        "phpunit/phpunit": "^11.1"
+    }
+}
