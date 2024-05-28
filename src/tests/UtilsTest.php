@@ -30,7 +30,7 @@ class UtilsTest extends TestCase{
         return [
             ["/HanumanRouter/ControllerA/{13}","/HanumanRouter/ControllerA"],
             ["/HanumanRouter/ControllerA",null],
-            ["/HanumanRouter/ControllerA/{nom}","/HanumanRouter/ControllerA"],
+            ["/HanumanRouter/ControllerA/yaourt/{nom}","/HanumanRouter/ControllerA/yaourt"],
             ["/HanumanRouter/ControllerB/{14}","/HanumanRouter/ControllerB"],
             ["/HanumanRouter/ControllerB/{yaourt}","/HanumanRouter/ControllerB"],
         ];
@@ -38,7 +38,7 @@ class UtilsTest extends TestCase{
 
     public static function sameProvider(){
         return [
-            ["/HanumanRouter/ControllerA/{id}","/HanumanRouter/ControllerA/13",true],
+            ["/HanumanRouter/ControllerA/{id}","/HanumanRouter/ControllerA/23",true],
             ["/HanumanRouter/ControllerA/{miaou}","/HanumanRouter/ControllerA/miaou",true],
             ["/HanumanRouter/ControllerA/{brouette}","/HanumanRouter/ControllerA/gnniii",true],
             ["/HanumanRouter/ControllerA/{prout}","/HanumanRouter/ControllerA/caca",true],

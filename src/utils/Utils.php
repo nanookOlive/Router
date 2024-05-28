@@ -53,12 +53,15 @@ class Utils{
     }
     public static function extractUri(String $request):?String 
     {
-        preg_match('/(.*)(\/{([A-Za-z]*|[0-9]*)})/',$request,$matches);
-        return $matches[1];
+        if(preg_match('/((\/[A-Za-z]*)*)(\/{[A-Za-z0-9]*})$/',$request,$matches)){
+            return $matches[1];
+        }else{
+            return null;
+        }
     }
     public static function newPattern(String $route):String
     {
-        return "/".$route."\/[A-Za-z]*|[0-9]*/";
+        return "/".$route."\/[A-Za-z0-9]*$/";
     }
 
     public static function areSame(String $request, String $route):bool

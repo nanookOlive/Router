@@ -74,24 +74,45 @@ class Router{
     public function callMethode(String $url, String $method){
 
         $route=null;
+
+
         foreach($this->routes as $urlKey => $content){
-            if($urlKey == $url){
-                if($content[0]==$method){
-                    $route=$this->routes[$url];
+            
+            if(!Utils::hasParam($urlKey)){
+
+                if($urlKey == $url){
+                    if($content[0]==$method){
+                        $route=$this->routes[$url];
+                        return $route;
+                    }
+                    
                 }
+            }else{ 
+                if(Utils::areSame($url,$urlKey)){
+                    $route=$this->routes[$urlKey];
+                    return $route;
+                   
+                }else{
+
+                    echo "Route with param not found";
+                }
+
             }
+            
         }
+        
+
+            
         //quid si deux routes identiques mais méthode !=
         //quid si param dans route
         //si param alors call_user_func_array
-        if($route != null){
-            //si la route possede {} à la fin alors il convient de r
-            $cont = new $route[1]();
-            call_user_func([$cont,$route[2]]);
-        }else{
-            echo "Route not Found\n";
-        }
-        
+        // if($route != null){
+        //     //si la route possede {} à la fin alors il convient de r
+        //     $cont = new $route[1]();
+        //     call_user_func([$cont,$route[2]]);
+        // }else{
+        //     echo "Route not Found\n";
+        // }
         
     }
     public function callMethodeByObject(Object $object, String $method){
