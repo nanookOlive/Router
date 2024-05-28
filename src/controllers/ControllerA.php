@@ -7,4 +7,8 @@ class ControllerA{
         echo "here's controller A !";
     }
     public function create(){}
+
+    public function findById($id){
+        echo $id;
+    }
 }

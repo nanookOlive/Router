@@ -1,6 +1,8 @@
 <?php
 namespace HomeBrewRouter;
 require_once __DIR__."/../utils/Utils.php";
+require_once __DIR__."/../controllers/ControllerA.php";
+require_once __DIR__."/../controllers/ControllerB.php";
 
 
 class Router{
@@ -24,7 +26,10 @@ class Router{
     private function loadRoute(){
         ///ajouter ici les routes
         //$this->addRoute('methode de la requete','l'url',Controller::class,'la méthode du controleur')
-        $this->addRoute('GET','/HanumanRouter/src/ControllerA','HomeBrewRouter\ControllerA','getHello');
+        $this->addRoute('GET','ControllerA',ControllerA::class,'getHello');
+        $this->addRoute("GET","ControllerA/{id}",ControllerA::class,'findById');
+        $this->addRoute("POST","ControllerB",ControllerB::class,"getProut");
+
     }
 
     public function getAllRoutes():Array|null 
@@ -47,7 +52,7 @@ class Router{
             if(Utils::controllerExists($controllerClean)){
                 if(method_exists($controller,$methodOfController)){
 
-                    $this->routes[$url]=[$method,$controller,$methodOfController];
+                    $this->routes["/HanumanRouter/".$url]=[$method,$controller,$methodOfController];
                      return true;
      
                  }else{
@@ -78,9 +83,13 @@ class Router{
         }
         //quid si deux routes identiques mais méthode !=
         //quid si param dans route
+        //si param alors call_user_func_array
         if($route != null){
+            //si la route possede {} à la fin alors il convient de r
             $cont = new $route[1]();
             call_user_func([$cont,$route[2]]);
+        }else{
+            echo "Route not Found\n";
         }
         
         
