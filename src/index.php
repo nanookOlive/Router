@@ -18,14 +18,8 @@ use HomeBrewRouter\ControllerA;
 
 //var_dump($route->getAllRoutes());
 
-$url="/HanumanRouter/ControllerA/{id}";
-$pattern='/(\/[A-Za-z]*)*({.*})/';
-if(preg_match($pattern,$url)){
-
-   
-    // $new='/(\/[A-Za-z]*)*([0-9]*)/';
-    // preg_match($new,$_SERVER['REQUEST_URI'],$matches);
-    // var_dump($matches[2]);
-    // $cont=ControllerA::class;
-    // call_user_func(["HomeBrewRouter\ControllerA","findById"]);
-}
+$request="/HanumanRouter/ControllerA/gnnna";
+$route="/HanumanRouter/ControllerA/gnnna";
+$route=str_replace('/',"\/",$route);
+echo $route;
+//echo preg_match("/\/HanumanRouter\/ControllerA\/[A-Za-z]*|[0-9]*/",$route );

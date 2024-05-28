@@ -45,4 +45,27 @@ class Utils{
             return false;
         }
     }
+
+
+    public static function hasParam(String $request):bool 
+    {
+        return preg_match('/(.*)(\/{[A-Za-z]*})/',$request);
+    }
+    public static function extractUri(String $request):?String 
+    {
+        preg_match('/(.*)(\/{([A-Za-z]*|[0-9]*)})/',$request,$matches);
+        return $matches[1];
+    }
+    public static function newPattern(String $route):String
+    {
+        return "/".$route."\/[A-Za-z]*|[0-9]*/";
+    }
+
+    public static function areSame(String $request, String $route):bool
+    {
+        $route=self::extractUri($route);
+        $route=str_replace("/","\/",$route);
+        $route=self::newPattern($route);
+        return preg_match($route,$request);
+    }
 }
