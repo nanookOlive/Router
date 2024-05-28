@@ -12,4 +12,4 @@ use HomeBrewRouter\Router;
 
 
 $route= new Router();
-var_dump($route->callMethode(parse_url($_SERVER["REQUEST_URI"],PHP_URL_PATH),$_SERVER["REQUEST_METHOD"]));
+$route->callMethode(parse_url($_SERVER["REQUEST_URI"],PHP_URL_PATH),$_SERVER["REQUEST_METHOD"]);

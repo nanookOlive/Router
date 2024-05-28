@@ -83,18 +83,26 @@ class Router{
                 if($urlKey == $url){
                     if($content[0]==$method){
                         $route=$this->routes[$url];
-                        return $route;
+                        //Call méthode
+                        $cont = new $route[1]();
+                        call_user_func([$cont,$route[2]]);
+                        break;
                     }
                     
                 }
             }else{ 
                 if(Utils::areSame($url,$urlKey)){
                     $route=$this->routes[$urlKey];
-                    return $route;
+                    //instancier le controller
+                    $cont = new $route[1]();
+                    //on récupère les paramètres 
+                    //on call la fonction
+                    call_user_func([$cont,$route[2]],"3");
+                    return ;
                    
                 }else{
 
-                    echo "Route with param not found";
+                    //echo "Route with param not found";
                 }
 
             }
