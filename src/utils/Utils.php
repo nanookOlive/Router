@@ -71,4 +71,10 @@ class Utils{
         $route=self::newPattern($route);
         return preg_match($route,$request);
     }
+
+    public static function extractParam(String $request):?String
+    {
+        preg_match('/(.*)\/([A-Za-z0-9]*)$/',$request,$matches);
+        return $matches[2];
+    }
 }
