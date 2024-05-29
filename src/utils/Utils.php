@@ -77,4 +77,25 @@ class Utils{
         preg_match('/(.*)\/([A-Za-z0-9]*)$/',$request,$matches);
         return $matches[2];
     }
+
+    public static function getControllers(String $path):?array{
+        $controllers=null;
+
+        if(is_dir($path)){
+
+           if($controllers=scandir($path)){
+            $controllers=array_diff($controllers,[".",".."]);
+
+            return $controllers;
+           }else{
+            echo "Scan of $path failed.";
+            return null;
+           }
+
+        }else{
+            echo "$path not found.";
+            return null;
+        }
+
+    }
 }
