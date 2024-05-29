@@ -2,10 +2,15 @@
 namespace HomeBrewRouter;
 require_once __DIR__."/../utils/Utils.php";
 require_once __DIR__."/Routes.php";
-require_once __DIR__."/../controllers/ControllerA.php";
-require_once __DIR__."/../controllers/ControllerB.php";
 
 
+// require_once __DIR__."/../controllers/ControllerA.php";
+// require_once __DIR__."/../controllers/ControllerB.php";
+define("CONTROLLERS",__DIR__."/../controllers/");
+
+foreach(Utils::getControllers(CONTROLLERS) as $controller){
+    require_once CONTROLLERS.$controller;
+}
 class Router{
 
       //l'ensemble des routes 
