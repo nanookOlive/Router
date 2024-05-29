@@ -81,48 +81,45 @@ class Router{
             if(!Utils::hasParam($urlKey)){
 
                 if($urlKey == $url){
+                    //la méthode de la route et celle de la requete sont identiques
                     if($content[0]==$method){
+
                         $route=$this->routes[$url];
-                        //Call méthode
+                        //on instancie le controller afin de pouvoir call sa fonction
                         $cont = new $route[1]();
-                        call_user_func([$cont,$route[2]]);
-                        break;
+
+                         //si la méthode est en POST
+                        switch($method){
+                            case("GET"):
+                                call_user_func([$cont,$route[2]]);
+                                break;
+                            case("POST"):
+                                $param=json_decode(file_get_contents('php://input'),true);
+                                call_user_func([$cont,$route[2]],$param);
+                                break;
+                        }
                     }
-                    
                 }
             }else{ 
                 if(Utils::areSame($url,$urlKey)){
+                    
                     $route=$this->routes[$urlKey];
+                   
                     //instancier le controller
                     $cont = new $route[1]();
-                    //on récupère les paramètres 
+                    //on recupère les parametres
                     $param=Utils::extractParam($url);
+
                     //on call la fonction
                     call_user_func([$cont,$route[2]],$param);//parametre de la requete 
                     return ;
                    
                 }else{
 
-                    //echo "Route with param not found";
+                    echo "Route with param not found";
                 }
-
-            }
-            
+            }   
         }
-        
-
-            
-        //quid si deux routes identiques mais méthode !=
-        //quid si param dans route
-        //si param alors call_user_func_array
-        // if($route != null){
-        //     //si la route possede {} à la fin alors il convient de r
-        //     $cont = new $route[1]();
-        //     call_user_func([$cont,$route[2]]);
-        // }else{
-        //     echo "Route not Found\n";
-        // }
-        
     }
     public function callMethodeByObject(Object $object, String $method){
 

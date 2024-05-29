@@ -2,7 +2,7 @@
 namespace HomeBrewRouter;
 class ControllerB{
 
-    public function getProut(){
-        echo "Prout !!!";
+    public function getProut($data){
+        echo $data["say"];
     }
 }
