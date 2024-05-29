@@ -1,6 +1,7 @@
 <?php
 namespace HomeBrewRouter;
 require_once __DIR__."/../utils/Utils.php";
+require_once __DIR__."/Routes.php";
 require_once __DIR__."/../controllers/ControllerA.php";
 require_once __DIR__."/../controllers/ControllerB.php";
 
@@ -25,10 +26,13 @@ class Router{
 
     private function loadRoute(){
         ///ajouter ici les routes
-        //$this->addRoute('methode de la requete','l'url',Controller::class,'la méthode du controleur')
-        $this->addRoute('GET','ControllerA',ControllerA::class,'getHello');
-        $this->addRoute("GET","ControllerA/{id}",ControllerA::class,'findById');
-        $this->addRoute("POST","ControllerB",ControllerB::class,"getProut");
+        $routeSrc=new Routes;
+        $routes=$routeSrc->getRoutes();
+        foreach($routes as $route){
+            list($method,$url,$controller,$function)=$route;
+            $this->addRoute($method,$url,$controller,$function);
+           
+        }
 
     }
 
@@ -114,9 +118,6 @@ class Router{
                     call_user_func([$cont,$route[2]],$param);//parametre de la requete 
                     return ;
                    
-                }else{
-
-                    echo "Route with param not found";
                 }
             }   
         }
