@@ -97,7 +97,7 @@ class Router{
                     $cont = new $route[1]();
                     //on récupère les paramètres 
                     //on call la fonction
-                    call_user_func([$cont,$route[2]],"3");
+                    call_user_func([$cont,$route[2]]);//parametre de la requete 
                     return ;
                    
                 }else{

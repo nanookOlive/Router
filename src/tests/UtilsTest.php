@@ -46,6 +46,16 @@ class UtilsTest extends TestCase{
 
         ];
     }
+
+    public static function extractParamProvider(){
+        return [
+            ["/HanumanRouter/ControllerA/42","42"],
+            ["/HanumanRouter/ControllerB/42","42"],
+            ["/HanumanRouter/ControllerA/miaou/42","23"],
+            ["/HanumanRouter/ControllerA/miaou/findBy/23","42"],
+            ["/HanumanRouter/ControllerC/23","23"],
+        ];
+    }
     /**
      * @dataProvider requestProvider
      */
@@ -72,6 +82,13 @@ class UtilsTest extends TestCase{
     public function testExists($controller,$expected){
 
         $this->assertEquals($expected,Utils::controllerExists($controller));
+    }
+
+    /**
+     * @dataProvider extractParamProvider
+     */
+    public function testExtractParam($request,$expected){
+        $this->assertEquals($expected,Utils::extractParam($request));
     }
     
 }
