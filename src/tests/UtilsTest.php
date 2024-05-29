@@ -51,8 +51,8 @@ class UtilsTest extends TestCase{
         return [
             ["/HanumanRouter/ControllerA/42","42"],
             ["/HanumanRouter/ControllerB/42","42"],
-            ["/HanumanRouter/ControllerA/miaou/42","23"],
-            ["/HanumanRouter/ControllerA/miaou/findBy/23","42"],
+            ["/HanumanRouter/ControllerA/miaou/42","42"],
+            ["/HanumanRouter/ControllerA/miaou/findBy/23","23"],
             ["/HanumanRouter/ControllerC/23","23"],
         ];
     }

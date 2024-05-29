@@ -96,8 +96,9 @@ class Router{
                     //instancier le controller
                     $cont = new $route[1]();
                     //on récupère les paramètres 
+                    $param=Utils::extractParam($url);
                     //on call la fonction
-                    call_user_func([$cont,$route[2]]);//parametre de la requete 
+                    call_user_func([$cont,$route[2]],$param);//parametre de la requete 
                     return ;
                    
                 }else{
