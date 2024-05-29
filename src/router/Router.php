@@ -19,8 +19,10 @@ class Router{
 
     private $methodList=["GET","POST","PUT","DELETE"];
 
-    public function __construct(){
+    private $path;
+    public function __construct(String $path){
 
+        $this->path=$path;
         $this->loadRoute();
     }
 
@@ -56,7 +58,7 @@ class Router{
             if(Utils::controllerExists($controllerClean)){
                 if(method_exists($controller,$methodOfController)){
 
-                    $this->routes["/HanumanRouter/".$url]=[$method,$controller,$methodOfController];
+                    $this->routes["/".$this->path."/".$url]=[$method,$controller,$methodOfController];
                      return true;
      
                  }else{
@@ -122,18 +124,6 @@ class Router{
             }   
         }
     }
-    public function callMethodeByObject(Object $object, String $method){
-
-        if(method_exists($object::class,$method)){
-            //Appelle de la fonction
-             call_user_func([$object::class,$method]);
-        }else{
-
-            echo "invalide methode";
-        }
-    }
-
    
-    //faire une méthode qui va regarder dans tous les dossiers afin de vérifier que la classe existe 
     
 }

@@ -11,5 +11,5 @@ use HomeBrewRouter\Router;
 
 
 
-$route= new Router();
+$route= new Router("HanumanRouter");
 $route->callMethode(parse_url($_SERVER["REQUEST_URI"],PHP_URL_PATH),$_SERVER["REQUEST_METHOD"]);
